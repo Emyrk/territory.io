@@ -7575,11 +7575,16 @@
         this.as = function (A) {
           var z = bN[A] * ig;
           // z is the max units
-          // var canvas = document.getElementById("canvas");
-          // var ctx = canvas.getContext("2d");
-          cA.fillStyle = "#FF0000";
-          cA.fillRect(0, 0, 150, 75);
           aq[A] = aq[A] > ij ? ij : aq[A] > z * 10 ? z : aq[A]
+          if (A == 0) {
+            // bN[A] = Income (territory size)
+            // ig = 150
+            // aq[A] is balance, z is max balance
+            console.log(bN)
+            console.log(A, bN[A], ig)
+            document.getElementById("max-balance").innerHTML = z;
+            document.getElementById("max-income").innerHTML = 100 * bN[A];
+          }
         }
       }
       function jw() {

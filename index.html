@@ -6330,7 +6330,8 @@
         var k = [0, 0, 0, 0];
         this.dk = [{
           b6: 0,
-          mE: 512
+          // Default is 512 for single player
+          mE: 1
         }];
         this.bi = function () {
           jI.setState(2);
@@ -7529,6 +7530,16 @@
         this.as = function (A) {
           var z = bN[A] * ig;
           aq[A] = aq[A] > ij ? ij : aq[A] > z ? z : aq[A]
+          // Player 0 is "me"
+          if (A == 0) {
+            // bN[A] = Income (territory size)
+            // ig = 150
+            // aq[A] is balance, z is max balance
+            console.log(bN)
+            console.log(A, bN[A], ig)
+            document.getElementById("max-balance").innerHTML = z;
+            document.getElementById("max-income").innerHTML = 100 * bN[A];
+          }
         }
       }
       function jw() {
