@@ -34,7 +34,7 @@
 </head>
 
 <body>
-  <div id="custom-shit" style="position:fixed; top:70px; left: 50%; background-color: red;">
+  <div id="custom-helper" style="position:fixed; top:70px; left: 50%; background-color: red;">
     Max Income: <span id="max-income"></span>
     <br />
     Max Balance: <span id="max-balance"></span>
@@ -7532,13 +7532,23 @@
           aq[A] = aq[A] > ij ? ij : aq[A] > z ? z : aq[A]
           // Player 0 is "me"
           if (A == 0) {
-            // bN[A] = Income (territory size)
             // ig = 150
             // aq[A] is balance, z is max balance
-            console.log(bN)
-            console.log(A, bN[A], ig)
+            // Income (territory size)
+            const income = bN[A]
+            const maxIncome = 100 * bN[A]
+            const balance = aq[A]
+            // We want to be below 'maxIncome'
+            const ratio = balance / maxIncome
+            const r = ratio * 255
+            const g = (1 - ratio) * 255
+            const b = 0
+
+            document.getElementById("custom-helper").style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+
+
             document.getElementById("max-balance").innerHTML = z;
-            document.getElementById("max-income").innerHTML = 100 * bN[A];
+            document.getElementById("max-income").innerHTML = maxIncome;
           }
         }
       }
